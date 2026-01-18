@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Iniciar Sesión</h1>
+<div style="max-width: 400px; margin-top: 20px;">
+    <form method="POST">
+        <div style="margin-bottom: 15px;">
+            <label for="username" style="display: block; margin-bottom: 5px;">Nombre de usuario:</label>
+            <input type="text" id="username" name="username" required
+                style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+        </div>
+        <div style="margin-bottom: 15px;">
+            <label for="contraseña" style="display: block; margin-bottom: 5px;">password:</label>
+            <input type="password" id="contraseña" name="contraseña" required
+                style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+        </div>
+        <div style="margin-bottom: 15px;">
+            <label for="correo" style="display: block; margin-bottom: 5px;">correo:</label>
+            <input type="email" id="correo" name="correo" required
+                style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+        </div>
+        <button type="submit" class="btn-primary">Entrar</button>
+    </form>
+</div>
+{% endblock %}
