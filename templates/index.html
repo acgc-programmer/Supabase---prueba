@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Bienvenido a la App de Prueba</h1>
+    <p>Esta es una aplicación base utilizando Flask y tus estilos personalizados.</p>
+    <br>
+    {% if not session.get('user') %}
+        <p>Para comenzar, por favor inicia sesión.</p>
+        <a href="{{ url_for('login') }}" class="btn-primary" style="margin-top: 1rem;">Ir al Login</a>
+        <a href="{{ url_for('register') }}" class="btn-primary" style="margin-top: 1rem;">Ir al registro</a>
+    {% else %}
+        <p>Hola de nuevo, <strong>{{ session['user'] }}</strong>.</p>
+    {% endif %}
+{% endblock %}

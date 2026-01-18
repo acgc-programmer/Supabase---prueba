@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Dashboard</h1>
+    <p>¡Has ingresado correctamente!</p>
+    <p>Esta vista está protegida y solo es accesible si existe una sesión activa.</p>
+    <p>Usuario actual: <code style="background-color:red; color:white; padding:5px; border-radius:5px; box-shadow:utset 5px red;">{{ session['user'] }}</code></p>
+{% endblock %}

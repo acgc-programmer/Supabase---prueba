@@ -1,0 +1,21 @@
+
+version 1
+
+CREATE DATABASE general
+    WITH
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LOCALE_PROVIDER = 'libc'
+    CONNECTION LIMIT = -1
+    IS_TEMPLATE = False;
+
+
+
+usuarios 
+
+CREATE TABLE usuarios (
+    id_usuario SERIAL PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL,
+    contraseña VARCHAR(50) NOT NULL,
+    correo VARCHAR(50) NOT NULL UNIQUE
+)

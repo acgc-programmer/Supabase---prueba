@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Crear Cuenta</h1>
+<div style="max-width: 400px; margin-top: 20px;">
+    <form method="POST" id="register-form">
+        <div style="margin-bottom: 15px;">
+            <label for="username">Nombre de usuario:</label>
+            <input type="text" id="username" name="username" required
+                style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+        </div>
+        <div style="margin-bottom: 15px;">
+            <label for="contraseña">Contraseña:</label>
+            <input type="password" id="contraseña" name="contraseña" required
+                style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+        </div>
+        <div style="margin-bottom: 15px;">
+            <label for="correo">Correo electrónico:</label>
+            <input type="email" id="correo" name="correo" required
+                style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+            <small id="email-error" style="color: red; display: none;">Este correo ya está registrado.</small>
+        </div>
+        <button type="submit" id="btn-submit" class="btn-primary">Registrarse</button>
+    </form>
+</div>
+
+
+
+<script>
+    const emailInput = document.getElementById('correo');
+    const btnSubmit = document.getElementById('btn-submit');
+    const emailError = document.getElementById('email-error');
+
+    emailInput.addEventListener('blur', async () => {
+        if (!emailInput.value) return;
+
+        const response = await fetch('/validar_correo', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ correo: emailInput.value })
+        });
+
+        const result = await response.json();
+
+        if (!result.disponible) {
+            // BLOQUEAR REGISTRO
+            emailInput.style.borderColor = "red";
+            emailError.style.display = "block";
+            btnSubmit.disabled = true;
+            btnSubmit.style.opacity = "0.5";
+        } else {
+            // PERMITIR REGISTRO
+            emailInput.style.borderColor = "green";
+            emailError.style.display = "none";
+            btnSubmit.disabled = false;
+            btnSubmit.style.opacity = "1";
+        }
+    });
+</script>
+{% endblock %}
